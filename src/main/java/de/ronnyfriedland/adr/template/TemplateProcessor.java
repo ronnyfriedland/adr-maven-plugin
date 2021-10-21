@@ -7,11 +7,11 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Template processing related operations.
+ * Abstract base for template processing related operations.
  *
  * @author ronnyfriedland
  */
-public class TemplateProcessor {
+public abstract class TemplateProcessor {
 
     protected final Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
 

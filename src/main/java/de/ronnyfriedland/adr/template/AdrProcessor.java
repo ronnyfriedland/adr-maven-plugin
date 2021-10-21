@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Template processing related operations.
+ * Template processing related operations for adrs.
  *
  * @author ronnyfriedland
  */

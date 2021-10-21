@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Template processing related operations.
+ * Template processing related operations for index files.
  *
  * @author ronnyfriedland
  */
