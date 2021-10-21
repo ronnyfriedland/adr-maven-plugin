@@ -1,5 +1,5 @@
 package de.ronnyfriedland.adr.enums;
 
-public enum ExportType {
+public enum FormatType {
     html;
 }

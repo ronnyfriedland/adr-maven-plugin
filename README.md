@@ -17,17 +17,25 @@ See [Link](https://adr.github.io/) for details about ADRs.
 
 ## Configuration properties
 
-Property		|	Description		|	Default value    | Required
-----------------|------------------|--------------------|------------
-templateSourcePath	| Directory which contains the templates | ${project.basedir}/src/main/resources/adr | false
-templateIndexFile | Template file which represents the entry point containing the list of adrs | index.md | false
-templateAdrFile | Template file which represents a single adr | adr.md | false
-targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false
-adrSubjectPattern | Pattern of the adr file | %03d_%s.md | false
-dateFormat | How to format date values | yyyy-MM-dd | false
-exportType | The export format | html | false
-statusType | The initial status of the adr | proposed | false
-subject | The subject of the adr | empty | true
+Property		|	Description		|	Default value    | Required | Goal
+----------------|------------------|--------------------|-------------|------------
+templateSourcePath	| Directory which contains the templates | ${project.basedir}/src/main/resources/adr | false | create
+templateIndexFile | Template file which represents the entry point containing the list of adrs | index.md | false | create,export,index
+templateAdrFile | Template file which represents a single adr | adr.md | false | create
+targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index
+adrSubjectPattern | Pattern of the adr file | %03d_%s.md | false | create
+dateFormat | How to format date values | yyyy-MM-dd | false | create
+format | The export format | html | false | export
+status | The initial status of the adr | proposed | false | create
+subject | The subject of the adr | empty | true | create
+
+## Template placeholders
+
+The following placeholders are available for templates:
+
+* subject
+* date
+* status
 
 ## Goals
 
@@ -38,7 +46,7 @@ already existing ADRs in the `targetPath`.
 
 ### index
 
-Creates a new index file based on the exisiting ADRs in `targetPath``.
+Creates a new index file based on the exisiting ADRs in `targetPath`.
 
 ### export
 

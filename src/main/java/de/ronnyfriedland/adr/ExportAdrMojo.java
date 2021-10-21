@@ -1,6 +1,6 @@
 package de.ronnyfriedland.adr;
 
-import de.ronnyfriedland.adr.enums.ExportType;
+import de.ronnyfriedland.adr.enums.FormatType;
 import de.ronnyfriedland.adr.export.ExportProcessor;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 import org.apache.maven.plugin.AbstractMojo;
@@ -20,8 +20,8 @@ import java.nio.file.Path;
 @Mojo(name = "export")
 public class ExportAdrMojo extends AbstractMojo {
 
-    @Parameter(property = "exportType", defaultValue = "html")
-    private ExportType exportType;
+    @Parameter(property = "format", defaultValue = "html")
+    private FormatType format;
 
     @Parameter(property = "targetPath", defaultValue = "${project.build.directory}/adr")
     private String targetPath;
@@ -35,13 +35,13 @@ public class ExportAdrMojo extends AbstractMojo {
      */
     public void execute() throws MojoExecutionException {
         try {
-            Files.createDirectories(Path.of(targetPath, exportType.name()));
+            Files.createDirectories(Path.of(targetPath, format.name()));
         } catch (final IOException e) {
             throw new MojoExecutionException("Error creating target directory", e);
         }
 
         try {
-            new ExportProcessor().exportAdr(targetPath, exportType.name());
+            new ExportProcessor().exportAdr(targetPath, format.name());
         } catch (final ExportProcessorException e) {
             throw new MojoExecutionException("Error exporting adr", e);
         }
