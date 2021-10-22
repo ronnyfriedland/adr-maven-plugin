@@ -27,6 +27,7 @@ adrSubjectPattern | Pattern of the adr file | %03d_%s.md | false | create
 dateFormat | How to format date values | yyyy-MM-dd | false | create
 format | The export format | html | false | export
 status | The initial status of the adr | proposed | false | create
+references | Referenced adrs |  | false | create
 subject | The subject of the adr | empty | true | create
 
 ## Template placeholders
@@ -36,6 +37,7 @@ The following placeholders are available for templates:
 * subject
 * date
 * status
+* references
 
 ## Goals
 

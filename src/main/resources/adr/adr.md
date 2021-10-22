@@ -18,3 +18,5 @@ Place improvements or negative impacts here.
 # References
 
 List all relevant ADRs which are related to this decision.
+
+${references}
