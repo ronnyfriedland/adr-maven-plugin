@@ -63,7 +63,7 @@ public class CreateNewAdrMojo extends AbstractMojo {
 
         try {
             new AdrProcessor(templateSourcePath, dateFormat).processAdrTemplate(templateAdrFile, targetPath, subject, status.name(), String.format(adrSubjectPattern, count, subject.replaceAll("\\W", "_")));
-            new IndexProcessor(templateSourcePath).createIndexTemplate(templateIndexFile, targetPath, templateIndexFile);
+            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath, templateIndexFile);
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }

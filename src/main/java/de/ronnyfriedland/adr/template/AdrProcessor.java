@@ -40,7 +40,8 @@ public class AdrProcessor extends TemplateProcessor {
      * @param fileName     the target filename
      * @throws TemplateProcessorException error during template processing
      */
-    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject, final String status, final String fileName) throws TemplateProcessorException {
+    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject,
+            final String status, final String fileName) throws TemplateProcessorException {
         try (FileWriter templateWriter = new FileWriter(new File(targetPath, fileName))) {
             Map<String, Object> templateParameters = new HashMap<>();
             templateParameters.put("subject", subject);

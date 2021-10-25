@@ -27,7 +27,7 @@ public class ExportProcessor {
      * @throws ExportProcessorException error during export
      */
     public void exportAdr(final String targetPath, final String type) throws ExportProcessorException {
-        try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1, (v, b) -> true)
+        try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1, (v, b) -> FilenameUtils.isExtension(v.getFileName().toString(), "md"))
         ) {
             Set<Path> files = new HashSet<>();
             pathStream.filter(Files::isRegularFile).forEach(files::add);
