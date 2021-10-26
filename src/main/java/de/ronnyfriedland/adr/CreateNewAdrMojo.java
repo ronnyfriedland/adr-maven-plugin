@@ -45,6 +45,9 @@ public class CreateNewAdrMojo extends AbstractMojo {
     @Parameter(property = "status", defaultValue = "proposed")
     private StatusType status;
 
+    @Parameter(property = "references")
+    private String[] references;
+
     /**
      * {@inheritDoc}
      */
@@ -62,8 +65,8 @@ public class CreateNewAdrMojo extends AbstractMojo {
         }
 
         try {
-            new AdrProcessor(templateSourcePath, dateFormat).processAdrTemplate(templateAdrFile, targetPath, subject, status.name(), String.format(adrSubjectPattern, count, subject.replaceAll("\\W", "_")));
-            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath, templateIndexFile);
+            new AdrProcessor(templateSourcePath, dateFormat).processAdrTemplate(templateAdrFile, targetPath, subject, status.name(), String.join(",", references), String.format(adrSubjectPattern, count, subject.replaceAll("\\W", "_")));
+            new IndexProcessor(templateSourcePath).createIndexTemplate(templateIndexFile, targetPath, templateIndexFile);
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }

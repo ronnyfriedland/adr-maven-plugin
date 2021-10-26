@@ -37,15 +37,16 @@ public class AdrProcessor extends TemplateProcessor {
      * @param targetPath   the target path of the processed template
      * @param subject      the subject of the adr
      * @param status       the (initial) status of the adr
+     * @param references   the referenced adrs
      * @param fileName     the target filename
      * @throws TemplateProcessorException error during template processing
      */
-    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject,
-            final String status, final String fileName) throws TemplateProcessorException {
+    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject, final String status, final String references, final String fileName) throws TemplateProcessorException {
         try (FileWriter templateWriter = new FileWriter(new File(targetPath, fileName))) {
             Map<String, Object> templateParameters = new HashMap<>();
             templateParameters.put("subject", subject);
             templateParameters.put("status", status);
+            templateParameters.put("references", references);
             templateParameters.put("creationDate", new Date());
 
             Template tpl1 = cfg.getTemplate(templateFile, StandardCharsets.UTF_8.name());
