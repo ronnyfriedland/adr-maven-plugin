@@ -25,7 +25,7 @@ public class IndexProcessor extends TemplateProcessor {
     /**
      * Creates a new instance of {@link IndexProcessor}
      *
-     * @param path       the base path for the templates
+     * @param path the base path for the templates
      */
     public IndexProcessor(final String path) {
         super(path);
@@ -39,15 +39,16 @@ public class IndexProcessor extends TemplateProcessor {
      * @param fileName     the target filename
      * @throws TemplateProcessorException error during template processing
      */
-    public void createIndexTemplate(final String templateFile, final String targetPath, final String fileName) throws TemplateProcessorException {
+    public void processIndexTemplate(final String templateFile, final String targetPath, final String fileName)
+            throws TemplateProcessorException {
         try (FileWriter indexWriter = new FileWriter(new File(targetPath, "index.md"))) {
 
             Map<String, Object> templateParameters = new HashMap<>();
 
             try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1,
-                    (p, basicFileAttributes) -> !p.getFileName().toString().equalsIgnoreCase(fileName))
-            ) {
-                templateParameters.put("templates", pathStream.filter(Files::isRegularFile).map(Path::getFileName).collect(Collectors.toSet()));
+                    (p, basicFileAttributes) -> !p.getFileName().toString().equalsIgnoreCase(fileName))) {
+                templateParameters.put("templates",
+                        pathStream.filter(Files::isRegularFile).map(Path::getFileName).collect(Collectors.toSet()));
             }
 
             Template tpl2 = cfg.getTemplate(templateFile, StandardCharsets.UTF_8.name());
