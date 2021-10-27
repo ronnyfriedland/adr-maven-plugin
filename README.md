@@ -1,9 +1,9 @@
 ADR maven plugin
 ==============
 
-Maven Plugin to provide basic operation regarding management of ADRs (Architecture Decision Records).
+Maven Plugin to provide basic operation regarding management of Architectural Decision Records (ADR).
 
-See [Link](https://adr.github.io/) for details about ADRs.
+See [Link](https://adr.github.io/) for details about ADR.
 
 ## Maven repository
 
@@ -43,17 +43,17 @@ The following placeholders are available for templates:
 
 ### create
 
-Creates a new ADR based on the template with the given subject. The Id of the ADR is calculated based on the number of
-already existing ADRs in the `targetPath`.
+Creates a new ADR based on the template with the given subject. The id of the ADR is calculated based on the number of 
+ADR already existing in the `targetPath`.
 
 ### index
 
-Creates a new index file based on the exisiting ADRs in `targetPath`.
+Creates a new index file based on the existing ADR files in `targetPath`.
 
 ### export
 
-Exports the existing ADRs in the `targetPath` into the given target format. A directory with the type name is created
-to store the exported files.
+Exports the existing ADR files located in the `targetPath` into the given target format. 
+A directory with the type name is created to store the exported files.
 
 ## Configuration example
 
