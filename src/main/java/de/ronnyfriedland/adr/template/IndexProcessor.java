@@ -41,7 +41,7 @@ public class IndexProcessor extends TemplateProcessor {
      */
     public void processIndexTemplate(final String templateFile, final String targetPath, final String fileName)
             throws TemplateProcessorException {
-        try (FileWriter indexWriter = new FileWriter(new File(targetPath, "index.md"))) {
+        try (FileWriter indexWriter = new FileWriter(new File(targetPath, fileName))) {
 
             Map<String, Object> templateParameters = new HashMap<>();
 

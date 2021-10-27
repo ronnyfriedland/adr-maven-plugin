@@ -16,7 +16,7 @@
                 <artifactId>adr-maven-plugin</artifactId>
                 <version>${project.version}</version>
                 <configuration>
-                    <templateSourcePath>${project.build.directory}/adr</templateSourcePath>
+                    <templateSourcePath>${project.basedir}</templateSourcePath>
                 </configuration>
             </plugin>
         </plugins>

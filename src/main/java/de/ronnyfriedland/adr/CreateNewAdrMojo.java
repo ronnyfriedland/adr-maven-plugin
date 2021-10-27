@@ -24,17 +24,17 @@ public class CreateNewAdrMojo extends AbstractMojo {
     @Parameter(property = "templateSourcePath", defaultValue = "${project.basedir}/src/main/resources/adr")
     private String templateSourcePath;
 
-    @Parameter(property = "templateIndexFile", defaultValue = "index.md")
+    @Parameter(property = "templateIndexFile", defaultValue = "index-template.md")
     private String templateIndexFile;
 
-    @Parameter(property = "templateAdrFile", defaultValue = "adr.md")
+    @Parameter(property = "templateAdrFile", defaultValue = "adr-template.md")
     private String templateAdrFile;
 
     @Parameter(property = "targetPath", defaultValue = "${project.build.directory}/adr")
     private String targetPath;
 
-    @Parameter(property = "adrSubjectPattern", defaultValue = "%03d_%s.md")
-    private String adrSubjectPattern;
+    @Parameter(property = "filenamePattern", defaultValue = "%03d_%s.md")
+    private String filenamePattern;
 
     @Parameter(property = "dateFormat", defaultValue = "yyyy-MM-dd")
     private String dateFormat;
@@ -67,9 +67,9 @@ public class CreateNewAdrMojo extends AbstractMojo {
         try {
             new AdrProcessor(templateSourcePath, dateFormat).processAdrTemplate(templateAdrFile, targetPath, subject,
                     status.name(), String.join(",", references),
-                    String.format(adrSubjectPattern, count, subject.replaceAll("\\W", "_")));
+                    String.format(filenamePattern, count, subject.replaceAll("\\W", "_")));
             new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath,
-                    templateIndexFile);
+                    "index.md");
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }

@@ -25,7 +25,7 @@ public class IndexMojo extends AbstractMojo {
     @Parameter(property = "targetPath", defaultValue = "${project.build.directory}/adr")
     private String targetPath;
 
-    @Parameter(property = "templateIndexFile", defaultValue = "index.md")
+    @Parameter(property = "templateIndexFile", defaultValue = "index-template.md")
     private String templateIndexFile;
 
 
@@ -40,7 +40,7 @@ public class IndexMojo extends AbstractMojo {
         }
 
         try {
-            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath, templateIndexFile);
+            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath, "index.md");
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }

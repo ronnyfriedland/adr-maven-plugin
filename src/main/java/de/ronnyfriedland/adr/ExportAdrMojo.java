@@ -26,7 +26,7 @@ public class ExportAdrMojo extends AbstractMojo {
     @Parameter(property = "targetPath", defaultValue = "${project.build.directory}/adr")
     private String targetPath;
 
-    @Parameter(property = "templateIndexFile", defaultValue = "index.md")
+    @Parameter(property = "templateIndexFile", defaultValue = "index-template.md")
     private String templateIndexFile;
 
 

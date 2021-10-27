@@ -44,7 +44,7 @@ public class IndexProcessorTest {
         Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
 
         try {
-            subject.processIndexTemplate("index.md", "target/" + getClass().getSimpleName(), "index.md");
+            subject.processIndexTemplate("index-template.md", "target/" + getClass().getSimpleName(), "index-template.md");
         } catch (final TemplateProcessorException e) {
             Assertions.fail("No exception expected", e);
         }
@@ -55,7 +55,7 @@ public class IndexProcessorTest {
         Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
 
         Assertions.assertThrows(TemplateProcessorException.class,
-                () -> subject.processIndexTemplate("foo.md", "target/" + getClass().getSimpleName(), "index.md"));
+                () -> subject.processIndexTemplate("foo.md", "target/" + getClass().getSimpleName(), "index-template.md"));
     }
 
     private String testFile() {

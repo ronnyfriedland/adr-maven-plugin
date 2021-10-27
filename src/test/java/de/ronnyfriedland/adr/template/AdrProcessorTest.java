@@ -47,7 +47,7 @@ public class AdrProcessorTest {
 
         Arrays.stream(StatusType.values()).forEach(status -> {
             try {
-                subject.processAdrTemplate("adr.md", "target/" + getClass().getSimpleName(), "test", status.name(),
+                subject.processAdrTemplate("adr-template.md", "target/" + getClass().getSimpleName(), "test", status.name(),
                         "", "adr-test.md");
             } catch (final TemplateProcessorException e) {
                 Assertions.fail("No exception expected", e);
