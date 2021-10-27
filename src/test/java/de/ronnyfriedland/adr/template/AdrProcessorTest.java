@@ -48,7 +48,7 @@ public class AdrProcessorTest {
         Arrays.stream(StatusType.values()).forEach(status -> {
             try {
                 subject.processAdrTemplate("adr.md", "target/" + getClass().getSimpleName(), "test", status.name(),
-                        "adr-test.md");
+                        "", "adr-test.md");
             } catch (final TemplateProcessorException e) {
                 Assertions.fail("No exception expected", e);
             }
@@ -61,7 +61,7 @@ public class AdrProcessorTest {
 
         Assertions.assertThrows(TemplateProcessorException.class,
                 () -> subject.processAdrTemplate("foo.md", "target/" + getClass().getSimpleName(), "test",
-                        StatusType.proposed.name(), "adr-test.md"));
+                        StatusType.proposed.name(), "", "adr-test.md"));
     }
 
     private String testFile() {
