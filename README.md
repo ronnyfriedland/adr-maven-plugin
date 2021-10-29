@@ -76,6 +76,9 @@ A directory with the type name is created to store the exported files.
 </build>
 ```
 
+To use the provided templates you must unpack the provided templates 
+(eg. using the [Maven Dependency Plugin](https://maven.apache.org/plugins/maven-dependency-plugin/)).
+
 ## Execution example
 
 ```mvn adr:create -Dsubject=Use adr-maven-plugin to manage architecture decision records in project```
