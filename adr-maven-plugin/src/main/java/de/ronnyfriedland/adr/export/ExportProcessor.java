@@ -9,12 +9,13 @@ import java.util.Set;
 import java.util.stream.Stream;
 import org.apache.commons.io.FilenameUtils;
 import org.markdown4j.Markdown4jProcessor;
+import de.ronnyfriedland.adr.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 
 /**
  * Exports the adrs into the target format.
  *
- * @see de.ronnyfriedland.adr.enums.FormatType
+ * @see FormatType
  *
  * @author ronnyfriedland
  */
