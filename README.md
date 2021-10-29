@@ -19,7 +19,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 
 Property		|	Description		|	Default value    | Required | Goal
 ----------------|------------------|--------------------|-------------|------------
-templateSourcePath	| Directory which contains the templates | ${project.basedir}/src/main/resources/adr | false | create
+templateSourcePath	| Directory which contains the templates | ${project.build.directory}/templates/adr | false | create
 templateIndexFile | Template file which represents the entry point containing the list of adrs | index-template.md | false | create,export,index
 templateAdrFile | Template file which represents a single adr | adr-template.md | false | create
 targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index
@@ -58,16 +58,26 @@ A directory with the type name is created to store the exported files.
 ## Configuration example
 
 ```xml
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>de.ronnyfriedland.maven</groupId>
-                <artifactId>adr-maven-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </plugin>
-        </plugins>
-    </build>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>de.ronnyfriedland.maven</groupId>
+            <artifactId>adr-maven-plugin</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <dependencies>
+                <dependency>
+                    <groupId>de.ronnyfriedland.maven</groupId>
+                    <artifactId>adr-templates</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
 ```
+
+To use the provided templates you must unpack the provided templates 
+(eg. using the [Maven Dependency Plugin](https://maven.apache.org/plugins/maven-dependency-plugin/)).
 
 ## Execution example
 

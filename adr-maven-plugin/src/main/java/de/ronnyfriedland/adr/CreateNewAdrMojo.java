@@ -21,7 +21,7 @@ import java.nio.file.Path;
 @Mojo(name = "create")
 public class CreateNewAdrMojo extends AbstractMojo {
 
-    @Parameter(property = "templateSourcePath", defaultValue = "${project.basedir}/src/main/resources/adr")
+    @Parameter(property = "templateSourcePath", defaultValue = "${project.build.directory}/templates/adr")
     private String templateSourcePath;
 
     @Parameter(property = "templateIndexFile", defaultValue = "index-template.md")

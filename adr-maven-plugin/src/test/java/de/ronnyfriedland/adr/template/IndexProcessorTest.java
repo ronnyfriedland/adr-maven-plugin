@@ -18,7 +18,7 @@ import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
  */
 public class IndexProcessorTest {
 
-    private final IndexProcessor subject = new IndexProcessor("target/classes/adr");
+    private final IndexProcessor subject = new IndexProcessor("target/adr");
 
     @BeforeEach
     public void setUp() {
