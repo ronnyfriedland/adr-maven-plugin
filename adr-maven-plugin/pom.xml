@@ -118,7 +118,7 @@
                                 </artifactItem>
                             </artifactItems>
                             <includes>**/*.md</includes>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/templates</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

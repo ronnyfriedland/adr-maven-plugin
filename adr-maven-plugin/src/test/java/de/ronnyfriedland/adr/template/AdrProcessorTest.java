@@ -20,7 +20,7 @@ import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
  */
 public class AdrProcessorTest {
 
-    private final AdrProcessor subject = new AdrProcessor("target/adr", "YYYY-mm-dd");
+    private final AdrProcessor subject = new AdrProcessor("target/templates/adr", "YYYY-mm-dd");
 
     @BeforeEach
     public void setUp() {
