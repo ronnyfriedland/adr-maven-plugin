@@ -64,13 +64,6 @@ A directory with the type name is created to store the exported files.
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-            <dependencies>
-                <dependency>
-                    <groupId>de.ronnyfriedland.maven</groupId>
-                    <artifactId>adr-templates</artifactId>
-                    <version>1.0.0-SNAPSHOT</version>
-                </dependency>
-            </dependencies>
         </plugin>
     </plugins>
 </build>
