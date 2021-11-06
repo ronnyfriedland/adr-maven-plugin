@@ -1,3 +1,3 @@
-<#list templates as template>
-${template}
+<#list adrs as adr>
+${adr}
 </#list>  

@@ -47,7 +47,7 @@ public class IndexProcessor extends TemplateProcessor {
 
             try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1,
                     (p, basicFileAttributes) -> !p.getFileName().toString().equalsIgnoreCase(fileName))) {
-                templateParameters.put("templates",
+                templateParameters.put("adrs",
                         pathStream.filter(Files::isRegularFile).map(Path::getFileName).collect(Collectors.toSet()));
             }
 
