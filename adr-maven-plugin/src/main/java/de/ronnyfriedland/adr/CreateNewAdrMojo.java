@@ -12,6 +12,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 /**
  * Create new adr mojo
@@ -52,9 +53,11 @@ public class CreateNewAdrMojo extends AbstractMojo {
      * {@inheritDoc}
      */
     public void execute() throws MojoExecutionException {
-        int count;
+        long count;
         if (Path.of(targetPath).toFile().exists()) {
-            count = Path.of(targetPath).toFile().list().length - 1;
+            count = Arrays.stream(Path.of(targetPath).toFile().listFiles())
+                    .filter(f -> f.getName().endsWith(".md"))
+                    .filter(f -> !f.getName().equals("index.md")).count();
         } else {
             try {
                 Files.createDirectories(Path.of(targetPath));
