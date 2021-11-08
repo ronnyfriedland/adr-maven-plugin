@@ -6,6 +6,7 @@ Maven Plugin to provide basic operation regarding management of Architectural De
 See [Link](https://adr.github.io/) for details about ADR.
 
 [![Java CI with Maven](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/maven.yml/badge.svg)](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/codeql-analysis.yml)
 
 ## Maven repository
 
