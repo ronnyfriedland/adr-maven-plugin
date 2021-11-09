@@ -14,7 +14,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -66,7 +66,7 @@ A directory with the type name is created to store the exported files.
         <plugin>
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2-SNAPSHOT</version>
         </plugin>
     </plugins>
 </build>
