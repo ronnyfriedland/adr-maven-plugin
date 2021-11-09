@@ -20,7 +20,7 @@ public abstract class TemplateProcessor {
      *
      * @param path       the base path for the templates
      */
-    public TemplateProcessor(final String path) {
+    protected TemplateProcessor(final String path) {
         try {
             cfg.setTemplateLoader(new FileTemplateLoader(new File(path)));
         } catch (IOException e) {
