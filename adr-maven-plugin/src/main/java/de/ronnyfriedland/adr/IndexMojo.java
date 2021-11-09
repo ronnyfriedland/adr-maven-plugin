@@ -40,7 +40,7 @@ public class IndexMojo extends AbstractMojo {
         }
 
         try {
-            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath, "index.md");
+            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath);
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }

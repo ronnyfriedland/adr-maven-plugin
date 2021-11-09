@@ -1,16 +1,19 @@
 package de.ronnyfriedland.adr.template;
 
-import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 /**
  * Template processing related operations for adrs.
@@ -41,7 +44,8 @@ public class AdrProcessor extends TemplateProcessor {
      * @param fileName     the target filename
      * @throws TemplateProcessorException error during template processing
      */
-    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject, final String status, final String references, final String fileName) throws TemplateProcessorException {
+    public void processAdrTemplate(final String templateFile, final String targetPath, final String subject,
+            final String status, final String references, final String fileName) throws TemplateProcessorException {
         try (FileWriter templateWriter = new FileWriter(new File(targetPath, fileName))) {
             Map<String, Object> templateParameters = new HashMap<>();
             templateParameters.put("subject", subject);
@@ -55,5 +59,17 @@ public class AdrProcessor extends TemplateProcessor {
         } catch (final IOException | TemplateException e) {
             throw new TemplateProcessorException("Error processing adr template", e);
         }
+    }
+
+    /**
+     * Retrieve all available adr files in the given path
+     *
+     * @param targetPath the path containing the adr files
+     * @return list of filenames
+     */
+    public Set<String> getAdrFiles(final String targetPath) {
+        return Arrays.stream(Path.of(targetPath).toFile().listFiles()).map(File::getName)
+                .filter(name -> name.endsWith(".md")).filter(name -> !name.equals(IndexProcessor.INDEX_FILENAME))
+                .collect(Collectors.toSet());
     }
 }
