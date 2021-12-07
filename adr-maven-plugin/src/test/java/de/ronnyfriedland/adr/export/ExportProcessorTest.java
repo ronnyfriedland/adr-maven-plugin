@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import de.ronnyfriedland.adr.enums.FormatType;
+import de.ronnyfriedland.adr.export.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 
 /**

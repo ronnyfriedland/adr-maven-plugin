@@ -7,7 +7,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 
 ## Maven repository
 
-```
+```xml
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
@@ -88,5 +88,5 @@ Subsequently you can specify the content of the adr.
 Groupid		|  Artifactid		|	License		
 ------------|--------------|------------------
 commons-io | commons-io | Apache License 2.0
-org.commonjava.googlecode.markdown4j |markdown4j | APLv2.0
+com.vladsch.flexmark |flexmark | BSD 2-clause
 org.freemarker | freemarker | Apache License 2.0

@@ -1,4 +1,4 @@
-package de.ronnyfriedland.adr.enums;
+package de.ronnyfriedland.adr.template.enums;
 
 /**
  * Defines the available status of an adr.
