@@ -1,16 +1,23 @@
 package de.ronnyfriedland.adr.export;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
-import org.apache.commons.io.FilenameUtils;
-import org.markdown4j.Markdown4jProcessor;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.data.MutableDataSet;
 import de.ronnyfriedland.adr.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
+import org.apache.commons.io.FilenameUtils;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Exports the adrs into the target format.
@@ -46,12 +53,20 @@ public class ExportProcessor {
     }
 
     private void exportHtml(final String targetPath, final String type, final Set<Path> files) throws IOException {
-        Markdown4jProcessor md = new Markdown4jProcessor();
+        MutableDataSet options = new MutableDataSet();
+
+        Parser parser = Parser.builder(options).build();
+        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+
         for (Path fileForExport : files) {
 
             String typedFileName = FilenameUtils.removeExtension(fileForExport.getFileName().toString()) + "." + type;
             try (FileWriter fw = new FileWriter(Path.of(targetPath, type, typedFileName).toFile())) {
-                String processed = md.process(fileForExport.toFile());
+
+                List<String> lines = Files.readAllLines(Paths.get(fileForExport.toUri()), StandardCharsets.UTF_8);
+                String processed = String.join(System.lineSeparator(), lines);
+
+                processed = Stream.of(processed).map(parser::parse).map(renderer::render).collect(Collectors.joining());
 
                 for (Path fileForReplacment : files) {
                     processed = processed.replaceAll(fileForReplacment.getFileName().toString(),
