@@ -1,4 +1,4 @@
-package de.ronnyfriedland.adr.enums;
+package de.ronnyfriedland.adr.export.enums;
 
 /**
  * Defines the available (export-) formats.

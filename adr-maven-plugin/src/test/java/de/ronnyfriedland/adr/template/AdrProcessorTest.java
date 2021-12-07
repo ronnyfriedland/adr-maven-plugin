@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import de.ronnyfriedland.adr.enums.StatusType;
+import de.ronnyfriedland.adr.template.enums.StatusType;
 import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
 
 /**

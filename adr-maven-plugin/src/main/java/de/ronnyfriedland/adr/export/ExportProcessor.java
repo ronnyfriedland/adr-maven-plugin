@@ -3,7 +3,7 @@ package de.ronnyfriedland.adr.export;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.data.MutableDataSet;
-import de.ronnyfriedland.adr.enums.FormatType;
+import de.ronnyfriedland.adr.export.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 import org.apache.commons.io.FilenameUtils;
 
@@ -66,15 +66,15 @@ public class ExportProcessor {
                 List<String> lines = Files.readAllLines(Paths.get(fileForExport.toUri()), StandardCharsets.UTF_8);
                 String processed = String.join(System.lineSeparator(), lines);
 
-                processed = Stream.of(processed).map(parser::parse).map(renderer::render).collect(Collectors.joining());
-
                 for (Path fileForReplacment : files) {
                     processed = processed.replaceAll(fileForReplacment.getFileName().toString(),
                             FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + type);
                 }
+                processed = Stream.of(processed).map(parser::parse).map(renderer::render).collect(Collectors.joining());
 
                 fw.write(processed);
             }
         }
     }
+
 }

@@ -1,6 +1,6 @@
 package de.ronnyfriedland.adr;
 
-import de.ronnyfriedland.adr.enums.FormatType;
+import de.ronnyfriedland.adr.export.enums.FormatType;
 import de.ronnyfriedland.adr.export.ExportProcessor;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 import org.apache.maven.plugin.AbstractMojo;
