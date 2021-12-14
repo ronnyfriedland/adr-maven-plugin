@@ -25,7 +25,7 @@ templateAdrFile | Template file which represents a single adr | adr-template.md 
 targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index
 filenamePattern | Pattern of the adr file | %03d_%s.md | false | create
 dateFormat | How to format date values | yyyy-MM-dd | false | create
-format | The export format | html | false | export
+format | The export format | html, pdf | false | export
 status | The initial status of the adr | proposed | false | create
 references | Referenced adrs |  | false | create
 subject | The subject of the adr | empty | true | create
@@ -54,6 +54,10 @@ Creates a new index file based on the existing ADR files in `targetPath`.
 
 Exports the existing ADR files located in the `targetPath` into the given target format. 
 A directory with the type name is created to store the exported files.
+
+Export types are:
+* html
+* pdf
 
 ## Configuration example
 
@@ -88,5 +92,5 @@ Subsequently you can specify the content of the adr.
 Groupid		|  Artifactid		|	License		
 ------------|--------------|------------------
 commons-io | commons-io | Apache License 2.0
-com.vladsch.flexmark |flexmark | BSD 2-clause
+com.vladsch.flexmark | flexmark | BSD 2-clause
 org.freemarker | freemarker | Apache License 2.0
