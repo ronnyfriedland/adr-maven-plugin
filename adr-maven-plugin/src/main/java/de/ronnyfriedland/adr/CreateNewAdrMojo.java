@@ -1,6 +1,6 @@
 package de.ronnyfriedland.adr;
 
-import de.ronnyfriedland.adr.enums.StatusType;
+import de.ronnyfriedland.adr.template.enums.StatusType;
 import de.ronnyfriedland.adr.template.AdrProcessor;
 import de.ronnyfriedland.adr.template.IndexProcessor;
 import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;

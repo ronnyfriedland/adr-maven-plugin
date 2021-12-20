@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import de.ronnyfriedland.adr.enums.FormatType;
+import de.ronnyfriedland.adr.export.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 
 /**
@@ -50,7 +50,7 @@ public class ExportProcessorTest {
     }
 
     @Test
-    public void testNoFilesSuccessHtml() throws IOException {
+    public void testNoFilesSuccessAllFormats() throws IOException {
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
                 subject.exportAdr("target/" + getClass().getSimpleName(), format.name());
@@ -85,6 +85,27 @@ public class ExportProcessorTest {
             }
         });
     }
+
+    @Test
+    public void testSimpleSuccessPdf() throws IOException {
+        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+
+
+        Arrays.stream(FormatType.values()).forEach(format -> {
+            try {
+                subject.exportAdr("target/" + getClass().getSimpleName(), FormatType.pdf.name());
+            } catch (final ExportProcessorException e) {
+                Assertions.fail("No exception expected", e);
+            }
+            try {
+                Assertions.assertEquals(1,
+                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.pdf.name())).count());
+            } catch (final IOException e) {
+                Assertions.fail("No exception expected", e);
+            }
+        });
+    }
+
 
     @Test
     public void testDirectoryNotFound() throws IOException {
