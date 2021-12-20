@@ -14,7 +14,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -70,7 +70,7 @@ Export types are:
         <plugin>
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </plugin>
     </plugins>
 </build>
