@@ -39,7 +39,8 @@ public class ExportProcessor {
      * @throws ExportProcessorException error during export
      */
     public void exportAdr(final String targetPath, final String type) throws ExportProcessorException {
-        try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1, (v, b) -> FilenameUtils.isExtension(v.getFileName().toString(), "md"))
+        try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1,
+                (v, b) -> FilenameUtils.isExtension(v.getFileName().toString(), "md"))
         ) {
             Set<Path> files = new HashSet<>();
             pathStream.filter(Files::isRegularFile).forEach(files::add);
@@ -90,7 +91,14 @@ public class ExportProcessor {
             String pdfFileName = FilenameUtils.removeExtension(fileForExport.getFileName().toString()) + "." + FormatType.pdf.name();
             try (FileInputStream fis = new FileInputStream(Path.of(targetPath, FormatType.html.name(), htmlFileName).toFile());
                  FileOutputStream fos = new FileOutputStream(Path.of(targetPath, FormatType.pdf.name(), pdfFileName).toFile())) {
-                PdfConverterExtension.exportToPdf(fos, IOUtils.toString(fis, StandardCharsets.UTF_8), null, BaseRendererBuilder.TextDirection.LTR);
+
+                String processed = IOUtils.toString(fis, StandardCharsets.UTF_8);
+                for (Path fileForReplacment : files) {
+                    processed = processed.replaceAll(
+                            FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + FormatType.html.name(),
+                            FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + FormatType.pdf.name());
+                }
+                PdfConverterExtension.exportToPdf(fos, processed, null, BaseRendererBuilder.TextDirection.LTR);
             }
         }
 
