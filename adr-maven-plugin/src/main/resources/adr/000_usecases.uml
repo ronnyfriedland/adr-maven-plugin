@@ -1,0 +1,8 @@
+@startuml
+
+(create) --> (index)
+Developer --> (create)
+Developer --> (index)
+Developer --> (export)
+
+@enduml

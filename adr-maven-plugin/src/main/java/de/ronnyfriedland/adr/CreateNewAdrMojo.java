@@ -52,9 +52,12 @@ public class CreateNewAdrMojo extends AbstractMojo {
      * {@inheritDoc}
      */
     public void execute() throws MojoExecutionException {
-        int count;
+        AdrProcessor adrProcessor = new AdrProcessor(templateSourcePath, dateFormat);
+        IndexProcessor indexProcessor = new IndexProcessor(templateSourcePath);
+
+        long count;
         if (Path.of(targetPath).toFile().exists()) {
-            count = Path.of(targetPath).toFile().list().length - 1;
+            count = adrProcessor.getAdrFiles(targetPath).size();
         } else {
             try {
                 Files.createDirectories(Path.of(targetPath));
@@ -65,11 +68,10 @@ public class CreateNewAdrMojo extends AbstractMojo {
         }
 
         try {
-            new AdrProcessor(templateSourcePath, dateFormat).processAdrTemplate(templateAdrFile, targetPath, subject,
-                    status.name(), String.join(",", references),
+            adrProcessor.processAdrTemplate(templateAdrFile, targetPath, subject, status.name(),
+                    String.join(",", references),
                     String.format(filenamePattern, count, subject.replaceAll("\\W", "_")));
-            new IndexProcessor(templateSourcePath).processIndexTemplate(templateIndexFile, targetPath,
-                    "index.md");
+            indexProcessor.processIndexTemplate(templateIndexFile, targetPath);
         } catch (final TemplateProcessorException e) {
             throw new MojoExecutionException("Error processing templates", e);
         }
