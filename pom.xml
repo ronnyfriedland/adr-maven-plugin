@@ -20,13 +20,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <commons-io.version>2.11.0</commons-io.version>
         <freemarker.version>2.3.31</freemarker.version>
-        <junit-jupiter.version>5.8.1</junit-jupiter.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <markdown4j.version>2.2-cj-1.1</markdown4j.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <maven-plugin-api.version>3.8.3</maven-plugin-api.version>
-        <maven-plugin-annotations.version>3.6.1</maven-plugin-annotations.version>
+        <maven-plugin-api.version>3.8.4</maven-plugin-api.version>
+        <maven-plugin-annotations.version>3.6.2</maven-plugin-annotations.version>
         <maven-plugin-plugin.version>3.6.1</maven-plugin-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
