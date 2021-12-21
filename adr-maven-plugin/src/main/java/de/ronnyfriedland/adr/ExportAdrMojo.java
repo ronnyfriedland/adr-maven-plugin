@@ -35,8 +35,15 @@ public class ExportAdrMojo extends AbstractMojo {
      */
     public void execute() throws MojoExecutionException {
         try {
-            Files.createDirectories(Path.of(targetPath, FormatType.html.name()));
-            Files.createDirectories(Path.of(targetPath, FormatType.pdf.name()));
+            switch (format) {
+                case html:
+                    Files.createDirectories(Path.of(targetPath, FormatType.html.name()));
+                    break;
+                case pdf:
+                    Files.createDirectories(Path.of(targetPath, FormatType.html.name()));
+                    Files.createDirectories(Path.of(targetPath, FormatType.pdf.name()));
+                    break;
+            }
         } catch (final IOException e) {
             throw new MojoExecutionException("Error creating target directory", e);
         }
