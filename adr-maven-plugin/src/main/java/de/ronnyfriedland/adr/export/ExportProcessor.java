@@ -1,27 +1,17 @@
 package de.ronnyfriedland.adr.export;
 
-import com.openhtmltopdf.outputdevice.helper.BaseRendererBuilder;
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.pdf.converter.PdfConverterExtension;
-import com.vladsch.flexmark.util.data.MutableDataSet;
 import de.ronnyfriedland.adr.export.enums.FormatType;
 import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
+import de.ronnyfriedland.adr.export.formats.ExportDocxProcessor;
+import de.ronnyfriedland.adr.export.formats.ExportHtmlProcessor;
+import de.ronnyfriedland.adr.export.formats.ExportPdfProcessor;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -46,12 +36,15 @@ public class ExportProcessor {
             pathStream.filter(Files::isRegularFile).forEach(files::add);
 
             switch (type) {
+                case "docx":
+                    ExportDocxProcessor.exportDocx(targetPath, files);
+                    break;
                 case "html":
-                    exportHtml(targetPath, files);
+                    ExportHtmlProcessor.exportHtml(targetPath, files);
                     break;
                 case "pdf":
-                    exportHtml(targetPath, files);
-                    exportPdf(targetPath, files);
+                    ExportHtmlProcessor.exportHtml(targetPath, files);
+                    ExportPdfProcessor.exportPdf(targetPath, files);
                     break;
                 default:
                     throw new ExportProcessorException("Unknown type provided: " + type);
@@ -61,46 +54,4 @@ public class ExportProcessor {
         }
     }
 
-    private void exportHtml(final String targetPath, final Set<Path> files) throws IOException {
-        MutableDataSet options = new MutableDataSet();
-
-        Parser parser = Parser.builder(options).build();
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
-
-        for (Path fileForExport : files) {
-            String typedFileName = FilenameUtils.removeExtension(fileForExport.getFileName().toString()) + "." + FormatType.html.name();
-            try (FileWriter fw = new FileWriter(Path.of(targetPath, FormatType.html.name(), typedFileName).toFile())) {
-
-                List<String> lines = Files.readAllLines(Paths.get(fileForExport.toUri()), StandardCharsets.UTF_8);
-                String processed = String.join(System.lineSeparator(), lines);
-
-                for (Path fileForReplacment : files) {
-                    processed = processed.replaceAll(fileForReplacment.getFileName().toString(),
-                            FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + FormatType.html.name());
-                }
-                processed = Stream.of(processed).map(parser::parse).map(renderer::render).collect(Collectors.joining());
-
-                fw.write(processed);
-            }
-        }
-    }
-
-    private void exportPdf(final String targetPath, final Set<Path> files) throws IOException {
-        for (Path fileForExport : files) {
-            String htmlFileName = FilenameUtils.removeExtension(fileForExport.getFileName().toString()) + "." + FormatType.html.name();
-            String pdfFileName = FilenameUtils.removeExtension(fileForExport.getFileName().toString()) + "." + FormatType.pdf.name();
-            try (FileInputStream fis = new FileInputStream(Path.of(targetPath, FormatType.html.name(), htmlFileName).toFile());
-                 FileOutputStream fos = new FileOutputStream(Path.of(targetPath, FormatType.pdf.name(), pdfFileName).toFile())) {
-
-                String processed = IOUtils.toString(fis, StandardCharsets.UTF_8);
-                for (Path fileForReplacment : files) {
-                    processed = processed.replaceAll(
-                            FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + FormatType.html.name(),
-                            FilenameUtils.removeExtension(fileForReplacment.getFileName().toString()) + "." + FormatType.pdf.name());
-                }
-                PdfConverterExtension.exportToPdf(fos, processed, null, BaseRendererBuilder.TextDirection.LTR);
-            }
-        }
-
-    }
 }

@@ -106,6 +106,25 @@ public class ExportProcessorTest {
         });
     }
 
+    @Test
+    public void testSimpleSuccessDocx() throws IOException {
+        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+
+
+        Arrays.stream(FormatType.values()).forEach(format -> {
+            try {
+                subject.exportAdr("target/" + getClass().getSimpleName(), FormatType.docx.name());
+            } catch (final ExportProcessorException e) {
+                Assertions.fail("No exception expected", e);
+            }
+            try {
+                Assertions.assertEquals(1,
+                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.docx.name())).count());
+            } catch (final IOException e) {
+                Assertions.fail("No exception expected", e);
+            }
+        });
+    }
 
     @Test
     public void testDirectoryNotFound() throws IOException {

@@ -6,5 +6,5 @@ package de.ronnyfriedland.adr.export.enums;
  * @author ronnyfriedland
  */
 public enum FormatType {
-    html, pdf;
+    docx, html, pdf;
 }
