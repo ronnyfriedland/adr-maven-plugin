@@ -19,6 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <commons-io.version>2.11.0</commons-io.version>
+        <docx4j-JAXB-ReferenceImpl.version>11.3.2</docx4j-JAXB-ReferenceImpl.version>
         <flexmark.version>0.62.2</flexmark.version>
         <freemarker.version>2.3.31</freemarker.version>
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
@@ -62,6 +63,16 @@
                 <groupId>com.vladsch.flexmark</groupId>
                 <artifactId>flexmark-pdf-converter</artifactId>
                 <version>${flexmark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vladsch.flexmark</groupId>
+                <artifactId>flexmark-docx-converter</artifactId>
+                <version>${flexmark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.docx4j</groupId>
+                <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
+                <version>${docx4j-JAXB-ReferenceImpl.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
