@@ -1,0 +1,26 @@
+@startuml
+
+title Packages
+
+package de.ronnyfriedland.adr
+package de.ronnyfriedland.adr.export
+package de.ronnyfriedland.adr.export.exception
+package de.ronnyfriedland.adr.export.formats
+package de.ronnyfriedland.adr.template
+package de.ronnyfriedland.adr.template.exception
+package de.ronnyfriedland.adr.export.enums
+package de.ronnyfriedland.adr.template.enums
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template.exception
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template.enums
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export.exception
+de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export.enums
+de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.exception
+de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.enums
+de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.formats
+de.ronnyfriedland.adr.export.formats ..> de.ronnyfriedland.adr.export.enums
+de.ronnyfriedland.adr.template ..> de.ronnyfriedland.adr.template.exception
+de.ronnyfriedland.adr.template ..> de.ronnyfriedland.adr.template.formats
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+title Classes
+
+abstract class de.ronnyfriedland.adr.template.TemplateProcessor
+class de.ronnyfriedland.adr.CreateNewAdrMojo
+class de.ronnyfriedland.adr.ExportAdrMojo
+class de.ronnyfriedland.adr.IndexMojo
+class de.ronnyfriedland.adr.export.ExportProcessor
+class de.ronnyfriedland.adr.export.exception.ExportProcessorException
+class de.ronnyfriedland.adr.export.formats.ExportDocxProcessor
+class de.ronnyfriedland.adr.export.formats.ExportHtmlProcessor
+class de.ronnyfriedland.adr.export.formats.ExportPdfProcessor
+class de.ronnyfriedland.adr.template.AdrProcessor
+class de.ronnyfriedland.adr.template.IndexProcessor
+class de.ronnyfriedland.adr.template.exception.TemplateProcessorException
+enum de.ronnyfriedland.adr.export.enums.FormatType
+enum de.ronnyfriedland.adr.template.enums.StatusType
+de.ronnyfriedland.adr.CreateNewAdrMojo ..> de.ronnyfriedland.adr.template.AdrProcessor
+de.ronnyfriedland.adr.CreateNewAdrMojo ..> de.ronnyfriedland.adr.template.IndexProcessor
+de.ronnyfriedland.adr.CreateNewAdrMojo ..> de.ronnyfriedland.adr.template.exception.TemplateProcessorException
+de.ronnyfriedland.adr.CreateNewAdrMojo ..> de.ronnyfriedland.adr.template.enums.StatusType
+de.ronnyfriedland.adr.ExportAdrMojo ..> de.ronnyfriedland.adr.export.ExportProcessor
+de.ronnyfriedland.adr.ExportAdrMojo ..> de.ronnyfriedland.adr.export.exception.ExportProcessorException
+de.ronnyfriedland.adr.ExportAdrMojo ..> de.ronnyfriedland.adr.export.enums.FormatType
+de.ronnyfriedland.adr.IndexMojo ..> de.ronnyfriedland.adr.template.IndexProcessor
+de.ronnyfriedland.adr.IndexMojo ..> de.ronnyfriedland.adr.template.exception.TemplateProcessorException
+de.ronnyfriedland.adr.export.ExportProcessor ..> de.ronnyfriedland.adr.export.exception.ExportProcessorException
+de.ronnyfriedland.adr.export.ExportProcessor ..> de.ronnyfriedland.adr.export.formats.ExportDocxProcessor
+de.ronnyfriedland.adr.export.ExportProcessor ..> de.ronnyfriedland.adr.export.formats.ExportHtmlProcessor
+de.ronnyfriedland.adr.export.ExportProcessor ..> de.ronnyfriedland.adr.export.formats.ExportPdfProcessor
+de.ronnyfriedland.adr.export.ExportProcessor ..> de.ronnyfriedland.adr.export.enums.FormatType
+de.ronnyfriedland.adr.export.formats.ExportDocxProcessor ..> de.ronnyfriedland.adr.export.enums.FormatType
+de.ronnyfriedland.adr.export.formats.ExportHtmlProcessor ..> de.ronnyfriedland.adr.export.enums.FormatType
+de.ronnyfriedland.adr.export.formats.ExportPdfProcessor ..> de.ronnyfriedland.adr.export.enums.FormatType
+de.ronnyfriedland.adr.template.AdrProcessor --|> de.ronnyfriedland.adr.template.TemplateProcessor
+de.ronnyfriedland.adr.template.AdrProcessor ..> de.ronnyfriedland.adr.template.exception.TemplateProcessorException
+de.ronnyfriedland.adr.template.IndexProcessor --|> de.ronnyfriedland.adr.template.TemplateProcessor
+de.ronnyfriedland.adr.template.IndexProcessor ..> de.ronnyfriedland.adr.template.exception.TemplateProcessorException
+
+@enduml
