@@ -10,14 +10,14 @@ Additionally only exports in HTML format are supported.
 
 We should switch to another library which meets the following criterias:
 * Apache 2.0 license compatible 
-* Support at least PDF exports 
+* Support at least HTML and PDF exports 
 * maintained 
 
 # Decision
 
 The library `com.vladsch.flexmark:flexmark` matches best:
 * BSD 2-clause
-* Support eg. PDF and DOCX export formats
+* Support eg. HTML, PDF and DOCX export formats
 
 # Consequences
 
