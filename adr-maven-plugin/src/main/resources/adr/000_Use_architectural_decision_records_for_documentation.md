@@ -15,7 +15,7 @@ To be sure ids are unique all architectural decision records for the project sho
 
 For this the plugin provides the necessary goals.
 
-![use-cases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/ronnyfriedland/adr-maven-plugin/master/adr-maven-plugin/src/main/resources/adr/000_usecases.uml)
+![use-cases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/ronnyfriedland/adr-maven-plugin/min/adr-maven-plugin/src/main/resources/adr/000_usecases.puml)
 
 # Consequences
 
