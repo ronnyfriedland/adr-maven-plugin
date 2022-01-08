@@ -2,25 +2,25 @@
 
 title Packages
 
-package de.ronnyfriedland.adr
-package de.ronnyfriedland.adr.export
-package de.ronnyfriedland.adr.export.exception
-package de.ronnyfriedland.adr.export.formats
-package de.ronnyfriedland.adr.template
-package de.ronnyfriedland.adr.template.exception
-package de.ronnyfriedland.adr.export.enums
-package de.ronnyfriedland.adr.template.enums
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template.exception
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.template.enums
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export.exception
-de.ronnyfriedland.adr ..> de.ronnyfriedland.adr.export.enums
-de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.exception
-de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.enums
-de.ronnyfriedland.adr.export ..> de.ronnyfriedland.adr.export.formats
-de.ronnyfriedland.adr.export.formats ..> de.ronnyfriedland.adr.export.enums
-de.ronnyfriedland.adr.template ..> de.ronnyfriedland.adr.template.exception
-de.ronnyfriedland.adr.template ..> de.ronnyfriedland.adr.template.formats
+[Mojos] <<de.ronnyfriedland.adr>> as mojos
+[Export] <<de.ronnyfriedland.adr.export>> as export
+[Export Exceptions] <<de.ronnyfriedland.adr.export.exception>> as export_exceptions
+[Format specific exports] <<de.ronnyfriedland.adr.export.formats>> as export_formats
+[Template] <<de.ronnyfriedland.adr.template>> as template
+[Template Exceptions] <<de.ronnyfriedland.adr.template.exception>> as template_exceptions
+[Export enums] <<de.ronnyfriedland.adr.export.enums>> as export_enums
+[Template enums] <<de.ronnyfriedland.adr.template.enums>> as template_enums
+
+mojos --> template
+mojos --> export_exceptions
+mojos --> template_enums
+mojos --> export
+mojos --> export_exceptions
+mojos --> export_enums
+export --> export_exceptions
+export --> export_enums
+export --> export_formats
+export_formats --> export_enums
+template --> template_exceptions
 
 @enduml

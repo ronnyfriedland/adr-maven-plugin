@@ -4,16 +4,16 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
 import de.ronnyfriedland.adr.template.TemplateProcessor;
-import freemarker.template.Template;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.library.plantuml.PlantUmlArchCondition.Configurations.*;
+import static com.tngtech.archunit.library.plantuml.PlantUmlArchCondition.Configurations.consideringOnlyDependenciesInAnyPackage;
 import static com.tngtech.archunit.library.plantuml.PlantUmlArchCondition.adhereToPlantUmlDiagram;
 
 /**
+ * Test architecture rules
+ *
  * @author ronnyfriedland
  */
 @AnalyzeClasses(packages = "de.ronnyfriedland.adr", importOptions = {ImportOption.DoNotIncludeTests.class})
@@ -51,6 +51,12 @@ public class ArchitectureTest {
     public static final ArchRule enumsPackageRule = classes()
             .that().areAssignableTo(Enum.class)
             .should().resideInAPackage("..enums");
+
+    @ArchTest
+    public static final ArchRule ruleClassDependencies =
+            classes()
+                    .should(adhereToPlantUmlDiagram("src/main/resources/packages.puml",
+                            consideringOnlyDependenciesInAnyPackage("de.ronnyfriedland.adr..")));
 }
 
 
