@@ -1,0 +1,13 @@
+@startuml
+
+title Project components
+
+[ADR Maven Plugin] as MAP
+[ADR Templates] as AT
+[ADR Example] as AE
+
+MAP --> "uses" AT
+AE --> "uses" AT
+AE --> "uses" MAP
+
+@enduml
