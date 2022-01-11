@@ -1,6 +1,6 @@
 # Support different export formats
  
-* Status: draft
+* Status: accepted
 * Date: 2022-01-05
 
 # Context
@@ -21,6 +21,6 @@ The library `com.vladsch.flexmark:flexmark` matches best:
 
 # Consequences
 
-If flexmark library will not be maintained in future we must change library again.
+If flexmark library will not be maintained in future we must change library again. For now there is no real option.
 
 # References
