@@ -36,6 +36,9 @@ public class ExportAdrMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException {
         try {
             switch (format) {
+                case docx:
+                    Files.createDirectories(Path.of(targetPath, FormatType.docx.name()));
+                    break;
                 case html:
                     Files.createDirectories(Path.of(targetPath, FormatType.html.name()));
                     break;

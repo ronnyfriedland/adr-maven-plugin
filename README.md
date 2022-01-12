@@ -14,7 +14,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -28,7 +28,7 @@ templateAdrFile | Template file which represents a single adr | adr-template.md 
 targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index
 filenamePattern | Pattern of the adr file | %03d_%s.md | false | create
 dateFormat | How to format date values | yyyy-MM-dd | false | create
-format | The export format | html, pdf | false | export
+format | The export format | docx, html, pdf | false | export
 status | The initial status of the adr | proposed | false | create
 references | Referenced adrs |  | false | create
 subject | The subject of the adr | empty | true | create
@@ -59,6 +59,7 @@ Exports the existing ADR files located in the `targetPath` into the given target
 A directory with the type name is created to store the exported files.
 
 Export types are:
+* docx
 * html
 * pdf
 
@@ -70,7 +71,7 @@ Export types are:
         <plugin>
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
-            <version>1.1.1-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </plugin>
     </plugins>
 </build>
@@ -96,4 +97,5 @@ Groupid		|  Artifactid		|	License
 ------------|--------------|------------------
 commons-io | commons-io | Apache License 2.0
 com.vladsch.flexmark | flexmark | BSD 2-clause
+org.docx4j | docx4j-JAXB-ReferenceImpl | Apache License 2.0
 org.freemarker | freemarker | Apache License 2.0
