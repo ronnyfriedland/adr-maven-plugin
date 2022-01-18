@@ -25,7 +25,7 @@ Property		|	Description		|	Default value    | Required | Goal
 templateSourcePath	| Directory which contains the templates | ${project.build.directory}/templates/adr | false | create
 templateIndexFile | Template file which represents the entry point containing the list of adrs | index-template.md | false | create,export,index
 templateAdrFile | Template file which represents a single adr | adr-template.md | false | create
-targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index
+targetPath | Path where to store the processed templates | ${project.build.directory}/adr | false | create,export,index,status
 filenamePattern | Pattern of the adr file | %03d_%s.md | false | create
 dateFormat | How to format date values | yyyy-MM-dd | false | create
 format | The export format | docx, html, pdf | false | export
@@ -62,6 +62,11 @@ Export types are:
 * docx
 * html
 * pdf
+
+### status
+
+Prints some status information of the ADR files located in `targetPath`.
+
 
 ## Configuration example
 
