@@ -87,6 +87,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.maven.shared</groupId>
                 <artifactId>maven-verifier</artifactId>
                 <version>${maven-verifier.version}</version>

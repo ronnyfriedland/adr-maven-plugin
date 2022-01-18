@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Comparator;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,12 +21,14 @@ import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
  */
 public class AdrProcessorTest {
 
+    private static final String baseDir = AdrProcessorTest.class.getSimpleName();
+
     private final AdrProcessor subject = new AdrProcessor("target/templates/adr", "YYYY-mm-dd");
 
     @BeforeEach
     public void setUp() {
         try {
-            Files.createDirectory(Path.of("target", getClass().getSimpleName()));
+            Files.createDirectory(Path.of("target", baseDir));
         } catch (final IOException e) {
             Assertions.fail("Error creating directories", e);
         }
@@ -34,7 +37,7 @@ public class AdrProcessorTest {
     @AfterEach
     public void tearDown() {
         try {
-            Files.walk(Path.of("target", getClass().getSimpleName())).sorted(Comparator.reverseOrder())
+            Files.walk(Path.of("target", baseDir)).sorted(Comparator.reverseOrder())
                     .map(Path::toFile).forEach(File::delete);
         } catch (final IOException e) {
             Assertions.fail("Error deleting directories", e);
@@ -43,11 +46,11 @@ public class AdrProcessorTest {
 
     @Test
     public void testSuccess() throws Exception {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
         Arrays.stream(StatusType.values()).forEach(status -> {
             try {
-                subject.processAdrTemplate("adr-template.md", "target/" + getClass().getSimpleName(), "test", status.name(),
+                subject.processAdrTemplate("adr-template.md", "target/" + baseDir, "test", status.name(),
                         "", "adr-test.md");
             } catch (final TemplateProcessorException e) {
                 Assertions.fail("No exception expected", e);
@@ -57,14 +60,14 @@ public class AdrProcessorTest {
 
     @Test
     public void testNoTemplateFileFound() throws Exception {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
         Assertions.assertThrows(TemplateProcessorException.class,
-                () -> subject.processAdrTemplate("foo.md", "target/" + getClass().getSimpleName(), "test",
+                () -> subject.processAdrTemplate("foo.md", "target/" + baseDir, "test",
                         StatusType.proposed.name(), "", "adr-test.md"));
     }
 
     private String testFile() {
-        return getClass().getSimpleName() + "_" + System.currentTimeMillis() + ".md";
+        return baseDir + "_" + System.currentTimeMillis() + ".md";
     }
 }
