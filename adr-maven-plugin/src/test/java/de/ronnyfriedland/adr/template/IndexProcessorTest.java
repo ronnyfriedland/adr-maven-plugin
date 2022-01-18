@@ -18,12 +18,14 @@ import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
  */
 public class IndexProcessorTest {
 
+    private static final String baseDir = AdrProcessorTest.class.getSimpleName();
+
     private final IndexProcessor subject = new IndexProcessor("target/templates/adr");
 
     @BeforeEach
     public void setUp() {
         try {
-            Files.createDirectory(Path.of("target", getClass().getSimpleName()));
+            Files.createDirectory(Path.of("target", baseDir));
         } catch (final IOException e) {
             Assertions.fail("Error creating directories", e);
         }
@@ -32,7 +34,7 @@ public class IndexProcessorTest {
     @AfterEach
     public void tearDown() {
         try {
-            Files.walk(Path.of("target", getClass().getSimpleName())).sorted(Comparator.reverseOrder())
+            Files.walk(Path.of("target", baseDir)).sorted(Comparator.reverseOrder())
                     .map(Path::toFile).forEach(File::delete);
         } catch (final IOException e) {
             Assertions.fail("Error deleting directories", e);
@@ -41,10 +43,10 @@ public class IndexProcessorTest {
 
     @Test
     public void testSuccess() throws Exception {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
         try {
-            subject.processIndexTemplate("index-template.md", "target/" + getClass().getSimpleName());
+            subject.processIndexTemplate("index-template.md", "target/" + baseDir);
         } catch (final TemplateProcessorException e) {
             Assertions.fail("No exception expected", e);
         }
@@ -52,13 +54,13 @@ public class IndexProcessorTest {
 
     @Test
     public void testNoTemplateFileFound() throws Exception {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
         Assertions.assertThrows(TemplateProcessorException.class,
-                () -> subject.processIndexTemplate("foo.md", "target/" + getClass().getSimpleName()));
+                () -> subject.processIndexTemplate("foo.md", "target/" + baseDir));
     }
 
     private String testFile() {
-        return getClass().getSimpleName() + "_" + System.currentTimeMillis() + ".md";
+        return baseDir + "_" + System.currentTimeMillis() + ".md";
     }
 }

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Comparator;
+
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -21,13 +22,15 @@ import de.ronnyfriedland.adr.export.exception.ExportProcessorException;
  */
 public class ExportProcessorTest {
 
+    private static final String baseDir = ExportProcessorTest.class.getSimpleName();
+
     private final ExportProcessor subject = new ExportProcessor();
 
     @BeforeEach
     public void setUp() {
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                Files.createDirectories(Path.of("target", getClass().getSimpleName(), format.name()));
+                Files.createDirectories(Path.of("target", baseDir, format.name()));
             } catch (final IOException e) {
                 Assertions.fail("Error creating directories", e);
             }
@@ -38,11 +41,11 @@ public class ExportProcessorTest {
     public void tearDown() {
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                Files.walk(Path.of("target", getClass().getSimpleName(), format.name()))
+                Files.walk(Path.of("target", baseDir, format.name()))
                         .sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
-                Files.find(Path.of("target", getClass().getSimpleName()), 1,
+                Files.find(Path.of("target", baseDir), 1,
                         (v, b) -> FilenameUtils.wildcardMatch(v.getFileName().toString(),
-                                getClass().getSimpleName() + "*.md")).map(Path::toFile).forEach(File::delete);
+                                baseDir + "*.md")).map(Path::toFile).forEach(File::delete);
             } catch (final IOException e) {
                 Assertions.fail("Error deleting directories", e);
             }
@@ -53,13 +56,13 @@ public class ExportProcessorTest {
     public void testNoFilesSuccessAllFormats() throws IOException {
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                subject.exportAdr("target/" + getClass().getSimpleName(), format.name());
+                subject.exportAdr("target/" + baseDir, format.name());
             } catch (final ExportProcessorException e) {
                 Assertions.fail("No exception expected", e);
             }
             try {
                 Assertions.assertEquals(0,
-                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.html.name())).count());
+                        Files.list(Path.of("target", baseDir, FormatType.html.name())).count());
             } catch (final IOException e) {
                 Assertions.fail("No exception expected", e);
             }
@@ -68,18 +71,18 @@ public class ExportProcessorTest {
 
     @Test
     public void testSimpleSuccessHtml() throws IOException {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
 
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                subject.exportAdr("target/" + getClass().getSimpleName(), FormatType.html.name());
+                subject.exportAdr("target/" + baseDir, FormatType.html.name());
             } catch (final ExportProcessorException e) {
                 Assertions.fail("No exception expected", e);
             }
             try {
                 Assertions.assertEquals(1,
-                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.html.name())).count());
+                        Files.list(Path.of("target", baseDir, FormatType.html.name())).count());
             } catch (final IOException e) {
                 Assertions.fail("No exception expected", e);
             }
@@ -88,18 +91,18 @@ public class ExportProcessorTest {
 
     @Test
     public void testSimpleSuccessPdf() throws IOException {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
 
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                subject.exportAdr("target/" + getClass().getSimpleName(), FormatType.pdf.name());
+                subject.exportAdr("target/" + baseDir, FormatType.pdf.name());
             } catch (final ExportProcessorException e) {
                 Assertions.fail("No exception expected", e);
             }
             try {
                 Assertions.assertEquals(1,
-                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.pdf.name())).count());
+                        Files.list(Path.of("target", baseDir, FormatType.pdf.name())).count());
             } catch (final IOException e) {
                 Assertions.fail("No exception expected", e);
             }
@@ -108,18 +111,18 @@ public class ExportProcessorTest {
 
     @Test
     public void testSimpleSuccessDocx() throws IOException {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
 
 
         Arrays.stream(FormatType.values()).forEach(format -> {
             try {
-                subject.exportAdr("target/" + getClass().getSimpleName(), FormatType.docx.name());
+                subject.exportAdr("target/" + baseDir, FormatType.docx.name());
             } catch (final ExportProcessorException e) {
                 Assertions.fail("No exception expected", e);
             }
             try {
                 Assertions.assertEquals(1,
-                        Files.list(Path.of("target", getClass().getSimpleName(), FormatType.docx.name())).count());
+                        Files.list(Path.of("target", baseDir, FormatType.docx.name())).count());
             } catch (final IOException e) {
                 Assertions.fail("No exception expected", e);
             }
@@ -128,12 +131,12 @@ public class ExportProcessorTest {
 
     @Test
     public void testDirectoryNotFound() throws IOException {
-        Files.createFile(Path.of("target", getClass().getSimpleName(), testFile()));
+        Files.createFile(Path.of("target", baseDir, testFile()));
         Assertions.assertThrows(ExportProcessorException.class,
-                () -> subject.exportAdr("target/" + getClass().getSimpleName(), "foo"));
+                () -> subject.exportAdr("target/" + baseDir, "foo"));
     }
 
     private String testFile() {
-        return getClass().getSimpleName() + "_" + System.currentTimeMillis() + ".md";
+        return baseDir + "_" + System.currentTimeMillis() + ".md";
     }
 }

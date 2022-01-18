@@ -2,8 +2,6 @@ package de.ronnyfriedland.adr.status;
 
 import de.ronnyfriedland.adr.template.enums.StatusType;
 import de.ronnyfriedland.adr.template.exception.TemplateProcessorException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -34,26 +32,13 @@ public class StatusProcessor {
     private static final Pattern statusPattern = Pattern.compile(".*[sS]tatus.*(proposed|rejected|accepted|deprecated).*");
     private static final Pattern linkPattern = Pattern.compile("\\(([^)]+)\\)*");
 
-    private static final Logger LOG = LoggerFactory.getLogger(StatusProcessor.class.getName());
-
     /**
      * Process the adr status.
      *
      * @param targetPath the target path of the processed template
      * @throws TemplateProcessorException error during template processing
      */
-    public void processStatus(final String targetPath) throws TemplateProcessorException {
-
-        Map<StatusType, BigInteger> status = getStatus(targetPath);
-        long brokenLinks = getBrokenLinks(targetPath);
-
-        LOG.info("Status of available ADRs:");
-        LOG.info("- total: {}", status.values().stream().reduce(BigInteger.ZERO, BigInteger::add));
-        status.entrySet().stream().map(k -> "- " + k.getKey() + ": " + k.getValue()).forEach(LOG::info);
-        LOG.info("- broken links: {}", brokenLinks);
-    }
-
-    private Map<StatusType, BigInteger> getStatus(String targetPath) throws TemplateProcessorException {
+    public Map<StatusType, BigInteger> processStatus(String targetPath) throws TemplateProcessorException {
         Map<StatusType, BigInteger> status = new EnumMap<>(StatusType.class);
 
         try (Stream<Path> pathStream = Files.find(Path.of(targetPath), 1,
@@ -73,12 +58,12 @@ public class StatusProcessor {
             }
 
         } catch (final IOException e) {
-            throw new TemplateProcessorException("Error processing validation", e);
+            throw new TemplateProcessorException("Error processing status", e);
         }
         return status;
     }
 
-    private long getBrokenLinks(String targetPath) throws TemplateProcessorException {
+    public long processBrokenLinks(String targetPath) throws TemplateProcessorException {
         try {
             String content = Files.readString(Path.of(targetPath, INDEX_FILENAME), StandardCharsets.UTF_8);
             Matcher matcher = linkPattern.matcher(content);

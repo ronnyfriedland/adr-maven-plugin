@@ -8,6 +8,7 @@ title Packages
 [Format specific exports] <<de.ronnyfriedland.adr.export.formats>> as export_formats
 [Template] <<de.ronnyfriedland.adr.template>> as template
 [Template Exceptions] <<de.ronnyfriedland.adr.template.exception>> as template_exceptions
+[Status] <<de.ronnyfriedland.adr.status>> as status
 [Export enums] <<de.ronnyfriedland.adr.export.enums>> as export_enums
 [Template enums] <<de.ronnyfriedland.adr.template.enums>> as template_enums
 
@@ -17,10 +18,13 @@ mojos --> template_enums
 mojos --> export
 mojos --> export_exceptions
 mojos --> export_enums
+mojos --> status
 export --> export_exceptions
 export --> export_enums
 export --> export_formats
 export_formats --> export_enums
 template --> template_exceptions
+status --> template_enums
+status --> template_exceptions
 
 @enduml
