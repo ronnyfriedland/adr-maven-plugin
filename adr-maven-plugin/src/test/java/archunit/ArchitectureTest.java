@@ -4,6 +4,8 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import de.ronnyfriedland.adr.export.ExportProcessor;
+import de.ronnyfriedland.adr.status.StatusProcessor;
 import de.ronnyfriedland.adr.template.TemplateProcessor;
 import org.apache.maven.plugins.annotations.Mojo;
 
@@ -32,9 +34,8 @@ public class ArchitectureTest {
     @ArchTest
     public static final ArchRule formatSpecificExporterPackageRule = classes()
             .that().haveSimpleNameStartingWith("Export")
-            .and().doNotHaveSimpleName("ExportAdrMojo")
-            .and().doNotHaveSimpleName("ExportProcessorException")
-            .and().doNotHaveSimpleName("ExportProcessor")
+                .and().haveSimpleNameEndingWith("Processor")
+                .and().doNotHaveSimpleName(ExportProcessor.class.getSimpleName())
             .should().resideInAPackage("de.ronnyfriedland.adr.export.formats");
 
     @ArchTest
@@ -51,6 +52,11 @@ public class ArchitectureTest {
     public static final ArchRule enumsPackageRule = classes()
             .that().areAssignableTo(Enum.class)
             .should().resideInAPackage("..enums");
+
+    @ArchTest
+    public static final ArchRule statusPackageRule = classes()
+            .that().haveSimpleName(StatusProcessor.class.getSimpleName())
+            .should().resideInAPackage("..status");
 
     @ArchTest
     public static final ArchRule ruleClassDependencies =
