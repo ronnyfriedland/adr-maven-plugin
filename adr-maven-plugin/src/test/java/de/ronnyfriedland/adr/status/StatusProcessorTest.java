@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Comparator;
 
 /**
  * Test {@link StatusProcessor}
@@ -62,7 +61,9 @@ public class StatusProcessorTest {
     @EnumSource(StatusType.class)
     public void testStatus(final StatusType statusType) throws Exception {
         Path created = Files.createFile(Path.of("target", baseDir, statusType + ".md"));
-        System.err.println(created);
+
+        Assertions.assertTrue(created.toFile().exists());
+
         IOUtils.write("status: " + statusType, new FileOutputStream(created.toFile()), StandardCharsets.UTF_8);
 
         Assertions.assertTrue(subject.processStatus(created.getParent().toString()).containsKey(statusType));
