@@ -62,9 +62,9 @@ public class StatusProcessorTest {
     @ParameterizedTest
     @EnumSource(StatusType.class)
     public void testStatus(final StatusType statusType) throws Exception {
-        Files.createFile(Path.of("target", baseDir, "test.md"));
+        Path created = Files.createFile(Path.of("target", baseDir, statusType + ".md"));
 
-        IOUtils.write("status: " + statusType, new FileOutputStream(Path.of("target", baseDir, statusType + ".md").toFile()), StandardCharsets.UTF_8);
+        IOUtils.write("status: " + statusType, new FileOutputStream(created.toFile()), StandardCharsets.UTF_8);
 
         Assertions.assertTrue(subject.processStatus(Path.of("target", baseDir).toString()).containsKey(statusType));
     }
