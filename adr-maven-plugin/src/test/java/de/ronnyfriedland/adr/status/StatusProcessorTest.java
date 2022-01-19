@@ -41,8 +41,7 @@ public class StatusProcessorTest {
     @AfterEach
     public void tearDown() {
         try {
-            Files.walk(Path.of("target", baseDir)).sorted(Comparator.reverseOrder())
-                    .map(Path::toFile).forEach(File::delete);
+            Files.walk(Path.of("target", baseDir)).filter(Files::isRegularFile).map(Path::toFile).forEach(File::delete);
         } catch (final IOException e) {
             Assertions.fail("Error deleting directories", e);
         }
@@ -63,9 +62,9 @@ public class StatusProcessorTest {
     @EnumSource(StatusType.class)
     public void testStatus(final StatusType statusType) throws Exception {
         Path created = Files.createFile(Path.of("target", baseDir, statusType + ".md"));
-
+        System.err.println(created);
         IOUtils.write("status: " + statusType, new FileOutputStream(created.toFile()), StandardCharsets.UTF_8);
 
-        Assertions.assertTrue(subject.processStatus(Path.of("target", baseDir).toString()).containsKey(statusType));
+        Assertions.assertTrue(subject.processStatus(created.getParent().toString()).containsKey(statusType));
     }
 }
