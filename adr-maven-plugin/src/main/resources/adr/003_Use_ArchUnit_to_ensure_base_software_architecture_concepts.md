@@ -1,6 +1,6 @@
 # Use ArchUnit to ensure base software architecture concepts
  
-* Status: proposed
+* Status: accepted
 * Date: 2022-04-04
 
 # Context
