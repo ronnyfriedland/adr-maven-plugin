@@ -14,7 +14,7 @@ See [Link](https://adr.github.io/) for details about ADR.
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -76,7 +76,7 @@ Prints some status information of the ADR files located in `targetPath`.
         <plugin>
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.1-SNAPSHOT</version>
         </plugin>
     </plugins>
 </build>
