@@ -40,19 +40,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <archunit-junit5.version>0.23.1</archunit-junit5.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <docx4j-JAXB-ReferenceImpl.version>11.4.5</docx4j-JAXB-ReferenceImpl.version>
-        <flexmark.version>0.64.0</flexmark.version>
-        <freemarker.version>2.3.31</freemarker.version>
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <archunit-junit5.version>1.0.1</archunit-junit5.version>
+        <commons-io.version>2.13.0</commons-io.version>
+        <docx4j-JAXB-ReferenceImpl.version>11.4.9</docx4j-JAXB-ReferenceImpl.version>
+        <flexmark.version>0.64.8</flexmark.version>
+        <freemarker.version>2.3.32</freemarker.version>
+        <junit-jupiter.version>5.9.3</junit-jupiter.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M6</maven-failsafe-plugin.version>
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-        <maven-plugin-api.version>3.8.5</maven-plugin-api.version>
-        <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
+        <maven-plugin-api.version>3.9.3</maven-plugin-api.version>
+        <maven-plugin-annotations.version>3.9.0</maven-plugin-annotations.version>
         <maven-plugin-plugin.version>3.6.4</maven-plugin-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
         <maven-site-plugin.version>3.11.0</maven-site-plugin.version>
