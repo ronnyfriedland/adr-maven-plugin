@@ -6,5 +6,16 @@ package de.ronnyfriedland.adr.export.enums;
  * @author ronnyfriedland
  */
 public enum FormatType {
-    docx, html, pdf;
+    /**
+     * Export adrs as docx (office document)
+     */
+    docx, 
+    /**
+     * Export adrs as html
+     */
+    html, 
+    /**
+     * Export adrs as pds
+     */
+    pdf;
 }

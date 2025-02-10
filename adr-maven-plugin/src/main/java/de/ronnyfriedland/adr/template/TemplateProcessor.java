@@ -13,6 +13,9 @@ import java.io.IOException;
  */
 public abstract class TemplateProcessor {
 
+    /**
+     * Template processing configuration object
+     */
     protected final Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
 
     /**

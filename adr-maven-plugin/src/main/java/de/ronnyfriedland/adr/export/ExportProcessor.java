@@ -25,6 +25,7 @@ public class ExportProcessor {
      * Export the adr markdown to target format
      *
      * @param targetPath the path of markdown adr and base path of the exported data
+     * @param type the type of export
      * @throws ExportProcessorException error during export
      */
     public void exportAdr(final String targetPath, final String type) throws ExportProcessorException {

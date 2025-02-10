@@ -36,6 +36,7 @@ public class StatusProcessor {
      * Process the adr status.
      *
      * @param targetPath the target path of the processed template
+     * @return status
      * @throws TemplateProcessorException error during template processing
      */
     public Map<StatusType, BigInteger> processStatus(String targetPath) throws TemplateProcessorException {
@@ -63,6 +64,13 @@ public class StatusProcessor {
         return status;
     }
 
+    /**
+     * Check for broken links
+     * 
+     * @param targetPath path to check
+     * @return number of broken links
+     * @throws TemplateProcessorException error during template processing
+     */
     public long processBrokenLinks(String targetPath) throws TemplateProcessorException {
         try {
             String content = Files.readString(Path.of(targetPath, INDEX_FILENAME), StandardCharsets.UTF_8);

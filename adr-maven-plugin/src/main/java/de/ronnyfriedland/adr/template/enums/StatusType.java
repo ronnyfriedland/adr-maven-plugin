@@ -6,5 +6,20 @@ package de.ronnyfriedland.adr.template.enums;
  * @author ronnyfriedland
  */
 public enum StatusType {
-    proposed, rejected, accepted, deprecated;
+    /**
+     * status "proposed"
+     */
+    proposed, 
+    /**
+     * status "rejected"
+     */
+    rejected, 
+    /**
+     * status "accepted"
+     */
+    accepted, 
+    /**
+     * status "deprecated"
+     */
+    deprecated;
 }
