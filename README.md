@@ -8,13 +8,14 @@ See [Link](https://adr.github.io/) for details about ADR.
 [![Java CI with Maven](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/maven.yml/badge.svg)](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/maven.yml)
 [![CodeQL](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/ronnyfriedland/adr-maven-plugin/actions/workflows/codeql-analysis.yml)
 
+See [Release overview](https://github.com/ronnyfriedland/adr-maven-plugin/releases) to get latest version of plugin to use.
+
 ## Maven repository
 
 ```xml
 <dependency>
     <groupId>de.ronnyfriedland.maven</groupId>
     <artifactId>adr-maven-plugin</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -117,7 +118,6 @@ Example output:
         <plugin>
             <groupId>de.ronnyfriedland.maven</groupId>
             <artifactId>adr-maven-plugin</artifactId>
-            <version>1.2.1-SNAPSHOT</version>
         </plugin>
     </plugins>
 </build>
